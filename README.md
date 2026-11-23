@@ -6,6 +6,7 @@
 
 <p align="center">
   <a href="#tampilan-aplikasi">Tampilan aplikasi</a> ·
+  <a href="#modul-dan-fitur">Modul dan fitur</a> ·
   <a href="#user-flow">User Flow</a> ·
   <a href="#flowchart-publikasi">Publikasi</a> ·
   <a href="#alur-sistem">Flowchart</a> ·
@@ -29,6 +30,25 @@ Cuplikan UI Pulse dengan akun dan konten demo.
 | --- | --- |
 | ![Kalender publikasi dengan konten demo](docs/media/calendar.png) | ![Halaman pengaturan Signal Agent](docs/media/signal-agent.png) |
 | Lihat jadwal, platform, dan status publikasi. | Kelola sumber, produk, dan jadwal pemantauan. |
+
+## Modul dan fitur
+
+![Peta modul Pulse AI, dari autentikasi hingga publikasi](docs/media/pulse-modules.svg)
+
+| Modul | Fungsi dan fitur utama |
+| --- | --- |
+| **Login dan sesi** | Masuk dengan email dan password. Sesi disimpan di MySQL, mutasi API memakai CSRF, dan logout mengakhiri sesi. |
+| **Dashboard** | Pantau jumlah konten, grafik aktivitas, jadwal publikasi, status Signal Agent, dan performa konten dari komentar tersinkron. |
+| **Master User** | Admin membuat, mengedit, dan menonaktifkan pengguna serta mengatur role, izin modul, dan akses akun sosial. |
+| **Profil** | Pengguna memperbarui identitas, informasi kontak, dan password sendiri. |
+| **Master Accounts** | Lihat akun sosial yang ditautkan melalui Tebar, termasuk platform dan status koneksinya. |
+| **Profil Produk** | Kelola deskripsi, branding, gambar referensi, dan akun sosial tujuan untuk tiap produk. |
+| **Signal Agent** | Atur sumber, kata kunci, produk, dan jadwal pemantauan. Jalankan manual atau otomatis. Apify mengumpulkan sinyal dan LLM menilai relevansi. Riwayat menampilkan hasil per eksekusi dan sumber. |
+| **Konten Generator** | Buat caption serta gambar tunggal atau carousel secara manual atau dari sinyal. Simpan draft, regenerasi slide, ajukan review, lalu setujui atau tolak. Persetujuan mengirim atau menjadwalkan konten lewat Tebar. |
+| **Kalender Konten** | Pantau jadwal dan status publikasi dalam tampilan bulan, minggu, atau agenda dalam WIB. Cari konten dan filter berdasarkan produk, platform, atau status. |
+| **Settings** | Atur preferensi aplikasi, konfigurasi agent, dan prompt konten. Admin menyimpan serta menguji koneksi LLM, Apify, dan Tebar. |
+
+Admin memiliki akses penuh. Anggota tim melihat modul dan akun sosial berdasarkan izin yang diberikan.
 
 ## User Flow
 
