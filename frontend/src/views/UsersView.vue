@@ -173,7 +173,7 @@ onMounted(load)
   <div class="master-users">
     <header class="users-heading">
       <span>ADMINISTRASI</span>
-      <h1>Master User</h1>
+      <h1>Management User</h1>
       <p>Kelola pengguna, peran, dan akses sistem Pulse.</p>
     </header>
     <p v-if="error" class="error" role="alert">{{ error }}</p>
@@ -276,7 +276,7 @@ onMounted(load)
               </label>
             </fieldset>
             <fieldset>
-              <legend>Akses Master Accounts <span>*</span></legend>
+              <legend>Akses Social Media Account <span>*</span></legend>
               <label class="check"><input v-model="accountChoice" type="radio" value="none" name="account-access" required /> Tanpa akses akun</label>
               <label class="check"><input v-model="accountChoice" type="radio" value="selected" name="account-access" required /> Pilih akun</label>
               <div v-if="accountChoice === 'selected'" class="account-choices">

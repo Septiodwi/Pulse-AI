@@ -190,7 +190,7 @@ test('admin can browse and create a product profile', async ({ page }) => {
     { id: 'yt-1', platform: 'youtube', username: null, display_name: 'YouTube Lama', connected_at: '2026-11-23T01:00:00Z', status: 'expired' },
   ] } } }))
   await page.goto('/accounts')
-  await expect(page.getByRole('heading', { name: 'Master Accounts' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Social Media Account' })).toBeVisible()
   await expect(page.getByRole('row', { name: /YouTube Lama/ })).toContainText('Kedaluwarsa')
   await page.route('**/api/products', async (route) => {
     if (route.request().method() === 'POST') {
@@ -203,7 +203,7 @@ test('admin can browse and create a product profile', async ({ page }) => {
   })
 
   await page.goto('/products')
-  await expect(page.getByRole('heading', { name: 'Profil Produk' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Brand Profile' })).toBeVisible()
   await expect(page.getByText('GlowSkin Serum')).toBeVisible()
   await page.getByRole('link', { name: 'Tambah Produk' }).click()
 

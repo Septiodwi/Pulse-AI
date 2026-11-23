@@ -3,11 +3,11 @@ import type { User, UserModule } from '../types'
 import { api } from './api'
 
 export const userModuleLabels: Record<UserModule, string> = {
-  accounts: 'Master Accounts',
-  products: 'Profil Produk',
-  'agent-news': 'Agent News',
-  content: 'Konten Generator',
-  settings: 'Settings',
+  accounts: 'Social Media Account',
+  products: 'Brand Profile',
+  'agent-news': 'AI Content Intelligence',
+  content: 'Content Idea Generator',
+  settings: 'Synchronize',
 }
 
 const state = reactive<{ user: User | null; ready: boolean }>({ user: null, ready: false })

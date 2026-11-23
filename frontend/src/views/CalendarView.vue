@@ -191,11 +191,11 @@ function goToday() {
   <section class="calendar">
     <header class="heading">
       <div>
-        <h1>Kalender Konten</h1>
+        <h1>Content Plan</h1>
         <p>Pantau jadwal unggah dan status publikasi media sosial.</p>
       </div>
       <RouterLink class="action" :to="auth.isAdmin.value ? '/content/new' : '/content'">
-        {{ auth.isAdmin.value ? '+ Buat Konten' : 'Buka Konten Generator' }}
+        {{ auth.isAdmin.value ? '+ Buat Konten' : 'Buka Content Idea Generator' }}
       </RouterLink>
     </header>
 

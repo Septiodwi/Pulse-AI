@@ -207,10 +207,10 @@ async function copyCaption(caption: string) {
 <template>
   <section class="generator">
     <header>
-      <RouterLink v-if="manual" to="/content">Konten Generator</RouterLink>
+      <RouterLink v-if="manual" to="/content">Content Idea Generator</RouterLink>
       <small v-else>AI CONTENT</small>
-      <h1>{{ manual ? 'Buat Konten Manual' : 'Konten Generator' }}</h1>
-      <p>{{ manual ? 'Buat gambar dan caption promosi berdasarkan Profil Produk.' : 'Kelola konten promosi dari generator manual dan Signal Agent.' }}</p>
+      <h1>{{ manual ? 'Buat Konten Manual' : 'Content Idea Generator' }}</h1>
+      <p>{{ manual ? 'Buat gambar dan caption promosi berdasarkan Brand Profile.' : 'Kelola konten promosi dari generator manual dan AI Content Intelligence.' }}</p>
     </header>
     <p v-if="error" role="alert" class="error">{{ error }}</p>
     <template v-if="manual">
@@ -319,7 +319,7 @@ async function copyCaption(caption: string) {
             <tr v-for="item in rows" :key="item.id">
               <td><img class="thumb" :src="item.image" alt="" /><small v-if="item.additionalImages?.length">Carousel · {{ imagesOf(item).length }}</small></td>
               <td><button class="title-button" @click="open(item)">{{ item.title }}</button><small class="excerpt">{{ item.caption }}</small></td>
-              <td>{{ item.productName }}</td><td>{{ item.source === 'SIGNAL' ? 'Signal Agent' : 'Manual' }}</td>
+              <td>{{ item.productName }}</td><td>{{ item.source === 'SIGNAL' ? 'AI Content Intelligence' : 'Manual' }}</td>
               <td><span class="badge" :data-status="item.status">{{ publicationLabels[publicationStates[item.id] ?? item.publication?.status ?? ''] ?? labels[item.status] }}</span></td><td>{{ date(item.createdAt) }}</td>
               <td><button v-if="item.publication?.postId" :aria-label="`Lihat komentar ${item.title}`" @click="readComments(item)">{{ counts[item.id] ?? '—' }}</button><span v-else>—</span></td>
               <td><button @click="open(item)">Detail</button></td>
@@ -349,7 +349,7 @@ async function copyCaption(caption: string) {
               <h3 class="detail-name">{{ detail.title }}</h3>
               <dl class="detail-meta">
                 <div><dt>Produk</dt><dd>{{ detail.productName }}</dd></div>
-                <div><dt>Sumber</dt><dd>{{ detail.source === 'SIGNAL' ? 'Signal Agent' : 'Manual' }}</dd></div>
+                <div><dt>Sumber</dt><dd>{{ detail.source === 'SIGNAL' ? 'AI Content Intelligence' : 'Manual' }}</dd></div>
                 <div><dt>Dibuat</dt><dd>{{ date(detail.createdAt) }} WIB</dd></div>
               </dl>
               <section v-if="detail.publication?.postId" class="inset">

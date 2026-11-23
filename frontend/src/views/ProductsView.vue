@@ -57,7 +57,7 @@ onMounted(() => {
 <template>
   <section class="products-page">
     <header class="products-header">
-      <div><h1>Profil Produk</h1><p>Kelola profil produk untuk kebutuhan konten dan branding.</p></div>
+      <div><h1>Brand Profile</h1><p>Kelola profil produk untuk kebutuhan konten dan branding.</p></div>
       <RouterLink class="add-product" to="/products/new"><b>＋</b> Tambah Produk</RouterLink>
     </header>
 

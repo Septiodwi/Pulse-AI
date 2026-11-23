@@ -39,7 +39,7 @@ onMounted(load)
 <template>
   <section class="detail-page">
     <button class="back-link" type="button" @click="router.push('/agent-news')">← Kembali ke Daftar Agent</button>
-    <header v-if="agent" class="detail-header"><div><small>AGENT NEWS</small><h1>{{agent.name}}</h1><p>{{agent.description}}</p></div><span :class="['agent-status',agent.status.toLowerCase()]">{{agent.status==='ACTIVE'?'Aktif':'Nonaktif'}}</span></header>
+    <header v-if="agent" class="detail-header"><div><small>AI Content Intelligence</small><h1>{{agent.name}}</h1><p>{{agent.description}}</p></div><span :class="['agent-status',agent.status.toLowerCase()]">{{agent.status==='ACTIVE'?'Aktif':'Nonaktif'}}</span></header>
     <nav class="detail-tabs"><button :class="{active:activeTab==='monitoring'}" @click="selectTab('monitoring')">Data Monitoring <b>{{monitoring.length}}</b></button><button :class="{active:activeTab==='history'}" @click="selectTab('history')">Riwayat Pengambilan <b>{{executions.length}}</b></button></nav>
     <p v-if="loading" class="empty">Memuat data agent…</p>
     <main v-else-if="activeTab==='monitoring'" class="detail-panel"><div class="run-picker">

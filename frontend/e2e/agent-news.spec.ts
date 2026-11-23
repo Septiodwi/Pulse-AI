@@ -31,7 +31,7 @@ test('admin creates an Instagram Agent News and can run Get Now', async ({ page 
   })
 
   await page.goto('/agent-news')
-  await expect(page.getByRole('heading', { name: 'Agent News Setting' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'AI Content Intelligence' })).toBeVisible()
   await page.getByRole('button', { name: 'Buat Agent Baru' }).click()
   await page.getByLabel('Nama Agent').fill('AceKid Trend Monitor')
   await page.getByLabel('Tujuan Monitoring').fill('Memantau tren nutrisi anak')

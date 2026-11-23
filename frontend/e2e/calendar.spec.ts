@@ -12,7 +12,7 @@ test('calendar displays a scheduled post in WIB and filters it by status', async
     }] },
   } }))
   await page.goto('/calendar')
-  await expect(page.getByRole('heading', { name: 'Kalender Konten' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Content Plan' })).toBeVisible()
   await page.getByRole('button', { name: 'Agenda', exact: true }).click()
   await expect(page.getByText('Konten uji', { exact: true })).toBeVisible()
   await expect(page.getByText(/10[.:]15/).first()).toBeVisible()

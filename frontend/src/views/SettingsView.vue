@@ -113,7 +113,7 @@ async function testConnection(integration: Integration) {
     </aside>
   </Transition>
 
-  <header class="settings-header"><div class="title-icon">⚙</div><div><h1>Settings</h1><p>Kelola konfigurasi aplikasi, integrasi, dan prompt Konten Generator.</p></div></header>
+  <header class="settings-header"><div class="title-icon">⚙</div><div><h1>Synchronize</h1><p>Kelola konfigurasi aplikasi, integrasi, dan prompt Content Idea Generator.</p></div></header>
   <nav class="settings-tabs" aria-label="Bagian pengaturan"><a href="#general" class="active">⚙ <span>General</span></a><a href="#prompts">◇ <span>Prompt Konten</span></a><a href="#integrations">↗ <span>Integrations (API)</span></a><RouterLink to="/users">♙ <span>Users &amp; Access</span></RouterLink></nav>
 
   <form class="settings-canvas" @submit.prevent="save">
@@ -124,7 +124,7 @@ async function testConnection(integration: Integration) {
       </section>
 
       <section id="prompts" class="settings-card agent-card">
-        <header class="card-titlebar agent-titlebar"><span class="section-icon robot-icon" aria-hidden="true">●</span><div><h2>Prompt Konten Generator</h2><p>Atur prompt untuk generasi Manual dan Signal Agent.</p></div></header>
+        <header class="card-titlebar agent-titlebar"><span class="section-icon robot-icon" aria-hidden="true">●</span><div><h2>Prompt Content Idea Generator</h2><p>Atur prompt untuk generasi Manual dan AI Content Intelligence.</p></div></header>
         <div class="prompt-body">
           <div class="robot-visual" aria-hidden="true"><i></i><div class="robot-head"><span></span><span></span></div><div class="robot-body">AI</div></div>
           <div v-if="prompts" class="form-stack prompt-editor">

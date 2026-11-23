@@ -19,11 +19,11 @@
 <circle class="dot" style="--delay: 0.0s" cx="28" cy="77" r="5"/>
 <text x="47" y="83" class="label">Login &amp; sesi</text>
 <circle class="dot" style="--delay: 0.25s" cx="28" cy="119" r="5"/>
-<text x="47" y="125" class="label">Profil</text>
+<text x="47" y="125" class="label">Management Account</text>
 <circle class="dot" style="--delay: 0.5s" cx="28" cy="161" r="5"/>
-<text x="47" y="167" class="label">Master User</text>
+<text x="47" y="167" class="label">Management User</text>
 <circle class="dot" style="--delay: 0.75s" cx="28" cy="203" r="5"/>
-<text x="47" y="209" class="label">Settings</text>
+<text x="47" y="209" class="label">Synchronize</text>
 </g>
 <g transform="translate(418 82)">
 <rect width="364" height="242" rx="16" fill="#102e42" stroke="#285469"/>
@@ -31,18 +31,18 @@
 <circle class="dot" style="--delay: 1.0s" cx="28" cy="77" r="5"/>
 <text x="47" y="83" class="label">Dashboard</text>
 <circle class="dot" style="--delay: 1.25s" cx="28" cy="119" r="5"/>
-<text x="47" y="125" class="label">Profil Produk</text>
+<text x="47" y="125" class="label">Brand Profile</text>
 <circle class="dot" style="--delay: 1.5s" cx="28" cy="161" r="5"/>
-<text x="47" y="167" class="label">Signal Agent</text>
+<text x="47" y="167" class="label">AI Content Intelligence</text>
 <circle class="dot" style="--delay: 1.75s" cx="28" cy="203" r="5"/>
-<text x="47" y="209" class="label">Konten Generator</text>
+<text x="47" y="209" class="label">Content Idea Generator</text>
 </g>
 <g transform="translate(796 82)">
 <rect width="364" height="242" rx="16" fill="#102e42" stroke="#285469"/>
 <text x="24" y="40" class="heading">Distribusi</text>
 <circle class="dot" style="--delay: 2.0s" cx="28" cy="77" r="5"/>
-<text x="47" y="83" class="label">Master Accounts</text>
+<text x="47" y="83" class="label">Social Media Account</text>
 <circle class="dot" style="--delay: 2.25s" cx="28" cy="119" r="5"/>
-<text x="47" y="125" class="label">Kalender Konten</text>
+<text x="47" y="125" class="label">Content Plan</text>
 </g>
 </svg>

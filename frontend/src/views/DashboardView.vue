@@ -320,9 +320,9 @@ const lastAgent = computed(() => [...agents.value].filter(agent => agent.lastAtt
           <div>
             <RouterLink v-if="canContent && auth.isAdmin.value" to="/content/new"><span aria-hidden="true">＋</span>Buat konten</RouterLink>
             <a v-if="canContent" href="#kalender-publikasi"><span aria-hidden="true">▦</span>Jadwal</a>
-            <RouterLink v-if="canAgent" to="/agent-news"><span aria-hidden="true">◉</span>Agent News</RouterLink>
+            <RouterLink v-if="canAgent" to="/agent-news"><span aria-hidden="true">◉</span>AI Content Intelligence</RouterLink>
             <RouterLink v-if="auth.canAccess('settings')" to="/settings"><span aria-hidden="true">⚙</span>Pengaturan</RouterLink>
-            <RouterLink v-if="!canContent && !canAgent" to="/profile"><span aria-hidden="true">◎</span>Profil</RouterLink>
+            <RouterLink v-if="!canContent && !canAgent" to="/profile"><span aria-hidden="true">◎</span>Management Account</RouterLink>
           </div>
         </section>
       </div>

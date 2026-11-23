@@ -16,7 +16,7 @@
   <a href="#rilis-produksi">Rilis</a>
 </p>
 
-Pulse AI mengubah sinyal media sosial menjadi konten siap ditinjau dan dijadwalkan. Tim mengelola profil produk, memantau temuan Signal Agent, membuat caption dan gambar, lalu menyetujui publikasi lewat Tebar.
+Pulse AI mengubah sinyal media sosial menjadi konten siap ditinjau dan dijadwalkan. Tim mengelola profil produk, memantau temuan AI Content Intelligence, membuat caption dan gambar, lalu menyetujui publikasi lewat Tebar.
 
 ## Tampilan aplikasi
 
@@ -26,9 +26,9 @@ Cuplikan UI Pulse dengan akun dan konten demo.
 
 ![Dashboard Pulse dengan ringkasan status konten dan jadwal](docs/media/dashboard.png)
 
-| Kalender Konten | Signal Agent |
+| Content Plan | AI Content Intelligence |
 | --- | --- |
-| ![Kalender publikasi dengan konten demo](docs/media/calendar.png) | ![Halaman pengaturan Signal Agent](docs/media/signal-agent.png) |
+| ![Kalender publikasi dengan konten demo](docs/media/calendar.png) | ![Halaman pengaturan AI Content Intelligence](docs/media/signal-agent.png) |
 | Lihat jadwal, platform, dan status publikasi. | Kelola sumber, produk, dan jadwal pemantauan. |
 
 ## Modul dan fitur
@@ -38,15 +38,15 @@ Cuplikan UI Pulse dengan akun dan konten demo.
 | Modul | Fungsi dan fitur utama |
 | --- | --- |
 | **Login dan sesi** | Masuk dengan email dan password. Sesi disimpan di MySQL, mutasi API memakai CSRF, dan logout mengakhiri sesi. |
-| **Dashboard** | Pantau jumlah konten, grafik aktivitas, jadwal publikasi, status Signal Agent, dan performa konten dari komentar tersinkron. |
-| **Master User** | Admin membuat, mengedit, dan menonaktifkan pengguna serta mengatur role, izin modul, dan akses akun sosial. |
-| **Profil** | Pengguna memperbarui identitas, informasi kontak, dan password sendiri. |
-| **Master Accounts** | Lihat akun sosial yang ditautkan melalui Tebar, termasuk platform dan status koneksinya. |
-| **Profil Produk** | Kelola deskripsi, branding, gambar referensi, dan akun sosial tujuan untuk tiap produk. |
-| **Signal Agent** | Atur sumber, kata kunci, produk, dan jadwal pemantauan. Jalankan manual atau otomatis. Apify mengumpulkan sinyal dan LLM menilai relevansi. Riwayat menampilkan hasil per eksekusi dan sumber. |
-| **Konten Generator** | Buat caption serta gambar tunggal atau carousel secara manual atau dari sinyal. Simpan draft, regenerasi slide, ajukan review, lalu setujui atau tolak. Persetujuan mengirim atau menjadwalkan konten lewat Tebar. |
-| **Kalender Konten** | Pantau jadwal dan status publikasi dalam tampilan bulan, minggu, atau agenda dalam WIB. Cari konten dan filter berdasarkan produk, platform, atau status. |
-| **Settings** | Atur preferensi aplikasi, konfigurasi agent, dan prompt konten. Admin menyimpan serta menguji koneksi LLM, Apify, dan Tebar. |
+| **Dashboard** | Pantau jumlah konten, grafik aktivitas, jadwal publikasi, status AI Content Intelligence, dan performa konten dari komentar tersinkron. |
+| **Management User** | Admin membuat, mengedit, dan menonaktifkan pengguna serta mengatur role, izin modul, dan akses akun sosial. |
+| **Management Account** | Pengguna memperbarui identitas, informasi kontak, dan password sendiri. |
+| **Social Media Account** | Lihat akun sosial yang ditautkan melalui Tebar, termasuk platform dan status koneksinya. |
+| **Brand Profile** | Kelola deskripsi, branding, gambar referensi, dan akun sosial tujuan untuk tiap produk. |
+| **AI Content Intelligence** | Atur sumber, kata kunci, produk, dan jadwal pemantauan. Jalankan manual atau otomatis. Apify mengumpulkan sinyal dan LLM menilai relevansi. Riwayat menampilkan hasil per eksekusi dan sumber. |
+| **Content Idea Generator** | Buat caption serta gambar tunggal atau carousel secara manual atau dari sinyal. Simpan draft, regenerasi slide, ajukan review, lalu setujui atau tolak. Persetujuan mengirim atau menjadwalkan konten lewat Tebar. |
+| **Content Plan** | Pantau jadwal dan status publikasi dalam tampilan bulan, minggu, atau agenda dalam WIB. Cari konten dan filter berdasarkan produk, platform, atau status. |
+| **Synchronize** | Atur preferensi aplikasi, konfigurasi agent, dan prompt konten. Admin menyimpan serta menguji koneksi LLM, Apify, dan Tebar. |
 
 Admin memiliki akses penuh. Anggota tim melihat modul dan akun sosial berdasarkan izin yang diberikan.
 
@@ -61,11 +61,11 @@ flowchart TD
     Valid -->|"Ya"| Dashboard["Dashboard"]
     Session -->|"Ya"| Dashboard
     Dashboard --> Role{"Role pengguna"}
-    Role -->|"Admin"| Admin["Kelola pengguna, integrasi, dan Signal Agent"]
+    Role -->|"Admin"| Admin["Kelola pengguna, integrasi, dan AI Content Intelligence"]
     Role -->|"Admin"| Publish["Buat, review, dan setujui publikasi"]
     Role -->|"Anggota tim"| Member["Buka modul sesuai izin"]
-    Member --> Modules["Akun, produk, Signal Agent, konten, kalender, atau settings"]
-    Dashboard --> Profile["Kelola profil"]
+    Member --> Modules["Social Media Account, Brand Profile, AI Content Intelligence, Content Idea Generator, Content Plan, atau Synchronize"]
+    Dashboard --> Profile["Kelola Management Account"]
     Dashboard --> Logout["Keluar · sesi diakhiri"]
 ```
 
@@ -74,7 +74,7 @@ flowchart TD
 ```mermaid
 flowchart TD
     Start{"Sumber konten"} -->|"Manual"| Manual["Admin pilih produk dan buat caption serta gambar"]
-    Start -->|"Signal Agent"| Signal["Konten dari sinyal yang relevan"]
+    Start -->|"AI Content Intelligence"| Signal["Konten dari sinyal yang relevan"]
     Manual --> Draft["Simpan draft"]
     Draft --> Review["Ajukan untuk review"]
     Signal --> Review
@@ -97,7 +97,7 @@ flowchart TD
     FE -->|"HTTP API, cookie sesi, CSRF"| BE["Express API"]
     BE --> DB[("MySQL")]
     BE --> M["Generator manual"]
-    BE --> S["Signal Agent"]
+    BE --> S["AI Content Intelligence"]
     S -->|"Pemicu manual atau jadwal"| A["Apify mengumpulkan sinyal"]
     A --> R["LLM menilai relevansi terhadap produk"]
     R -->|"Sinyal relevan"| G["LLM membuat caption dan gambar"]
@@ -120,7 +120,7 @@ flowchart LR
     subgraph Backend["Satu proses backend"]
         API --> Auth["Sesi, CSRF, role dan izin modul"]
         API --> Content["Generator, publikasi dan kalender"]
-        API -->|"Run manual"| Executor["Signal Agent executor"]
+        API -->|"Run manual"| Executor["AI Content Intelligence executor"]
         Scheduler["Scheduler"] -->|"Run terjadwal"| Executor
         Executor -->|"Rekomendasi"| Content
     end
@@ -227,12 +227,12 @@ erDiagram
 
 | Lokasi | Teknologi | Tanggung jawab |
 | --- | --- | --- |
-| [frontend/](frontend/) | Vue 3, Vite 8, TypeScript | Dashboard, akun, produk, Signal Agent, generator konten, kalender |
+| [frontend/](frontend/) | Vue 3, Vite 8, TypeScript | Dashboard dan delapan modul aplikasi |
 | [backend/](backend/) | Node.js 26+, Express 5, TypeScript, Zod | API, otorisasi, scheduler, integrasi provider |
 | [backend/migrations/](backend/migrations/) | MySQL 9.7 | Skema dan migrasi data |
 | [compose.yml](compose.yml) | Docker Compose | MySQL lokal |
 
-Frontend dan backend memiliki dependency, konfigurasi, dan build sendiri. API dan scheduler Signal Agent berjalan dalam satu proses backend.
+Frontend dan backend memiliki dependency, konfigurasi, dan build sendiri. API dan scheduler AI Content Intelligence berjalan dalam satu proses backend.
 
 ## Setup lokal
 
@@ -266,11 +266,11 @@ Buka [web lokal](http://localhost:5173). API tersedia di [localhost:3000](http:/
 
 ## Integrasi
 
-- **Apify** mengumpulkan sinyal untuk Signal Agent.
+- **Apify** mengumpulkan sinyal untuk AI Content Intelligence.
 - **LLM OpenAI-compatible** menilai relevansi dan menghasilkan teks serta gambar. Provider perlu mendukung `POST /chat/completions` dan `POST /images/edits` dengan respons gambar base64. Tes koneksi model memakai `GET /models`.
 - **Tebar** menyediakan akun sosial, publikasi, penjadwalan, dan status post.
 
-Konfigurasikan melalui Settings. Kredensial provider tersimpan terenkripsi di MySQL. Mutasi API memerlukan CSRF dan akses ditentukan oleh role atau izin modul.
+Konfigurasikan melalui Synchronize. Kredensial provider tersimpan terenkripsi di MySQL. Mutasi API memerlukan CSRF dan akses ditentukan oleh role atau izin modul.
 
 ## Verifikasi
 

@@ -81,7 +81,7 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', closeLinkedAcc
 <template>
   <section class="product-form-page">
     <nav class="breadcrumb"><RouterLink to="/products">Produk</RouterLink><span>›</span><b>{{ editing ? 'Edit Produk' : 'Tambah Produk' }}</b></nav>
-    <header><h1>{{ editing ? 'Edit Profil Produk' : 'Tambah Produk Baru' }}</h1><p>Buat profil produk untuk kebutuhan konten, promosi, dan distribusi omnichannel.</p></header>
+    <header><h1>{{ editing ? 'Edit Brand Profile' : 'Tambah Produk Baru' }}</h1><p>Buat profil produk untuk kebutuhan konten, promosi, dan distribusi omnichannel.</p></header>
     <p v-if="error" class="form-error" role="alert">{{ error }}</p><p v-if="loading">Memuat produk…</p>
     <form v-else @submit.prevent="save">
       <div class="form-card basic-card"><h2><span>◇</span> Informasi Dasar</h2><label>Nama Produk *<input v-model.trim="form.name" aria-label="Nama Produk" required maxlength="160" /></label>

@@ -28,7 +28,7 @@ onMounted(load)
 <template>
   <section class="accounts-page">
     <header>
-      <h1>Master Accounts</h1>
+      <h1>Social Media Account</h1>
       <p>Daftar akun yang terhubung ke Tebar.</p>
     </header>
     <div class="accounts-panel" :aria-busy="loading">

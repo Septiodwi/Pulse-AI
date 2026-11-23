@@ -85,7 +85,7 @@ async function submit(action: 'profile' | 'password') {
 <template>
   <div class="profile-page">
     <header class="profile-header">
-      <h1><span class="heading-icon" aria-hidden="true">◎</span> Profil</h1>
+      <h1><span class="heading-icon" aria-hidden="true">◎</span> Management Account</h1>
       <p>Kelola informasi akun, akses, dan keamanan Anda.</p>
     </header>
 
@@ -141,7 +141,7 @@ async function submit(action: 'profile' | 'password') {
         <section v-else-if="tab === 'access'" class="profile-card profile-details">
           <div class="details-heading">
             <h2><span aria-hidden="true">♙</span> Tim &amp; Akses</h2>
-            <RouterLink v-if="auth.isAdmin.value" class="profile-button" to="/users">Master User</RouterLink>
+            <RouterLink v-if="auth.isAdmin.value" class="profile-button" to="/users">Management User</RouterLink>
           </div>
           <h3>Modul yang dapat diakses</h3>
           <ul v-if="modules.length" class="module-list">
