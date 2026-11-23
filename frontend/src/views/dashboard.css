@@ -123,6 +123,7 @@
 .dash-actions > div { display: grid; grid-template-columns: repeat(auto-fit, minmax(76px, 1fr)); gap: 8px; }
 .dash-actions a { display: grid; align-content: center; justify-items: center; gap: 5px; min-height: 62px; padding: 7px; border-radius: 10px; background: #ffffffdb; color: var(--dash-ink); text-align: center; font-size: .74rem; transition: background .2s, transform .2s; }
 .dash-actions a:hover { background: #fff; transform: translateY(-2px); }
+.dash-actions a { overflow-wrap: anywhere; }
 .dash-actions a span { color: #0088a4; font-size: 1.1rem; }
 @keyframes dash-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes dash-grow { from { transform: scaleY(.12); } to { transform: scaleY(1); } }
@@ -133,7 +134,7 @@
 @media (max-width: 1080px) {
   .dash-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
-@media (max-width: 630px) {
+@media (max-width: 680px) {
   .dash-header { flex-direction: column; align-items: flex-start; }
   .dash-grid { grid-template-columns: minmax(0, 1fr); }
   .dash-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }

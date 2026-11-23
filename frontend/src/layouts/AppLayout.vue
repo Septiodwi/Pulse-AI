@@ -34,7 +34,7 @@ async function logout() { await auth.logout(); await router.push('/login') }
 </template>
 
 <style scoped>
-.app-shell{display:grid;grid-template-columns:254px minmax(0,1fr);min-height:100vh;color:#0c2238;background:radial-gradient(circle at 88% 3%,#e8fbff 0,transparent 22%),linear-gradient(135deg,#fff 0%,#f8fcff 48%,#eefaff 100%)}
+.app-shell{display:grid;grid-template-columns:clamp(208px,18vw,254px) minmax(0,1fr);min-height:100vh;color:#0c2238;background:radial-gradient(circle at 88% 3%,#e8fbff 0,transparent 22%),linear-gradient(135deg,#fff 0%,#f8fcff 48%,#eefaff 100%)}
 .app-sidebar{
   position:sticky;
   top:0;
@@ -66,6 +66,17 @@ async function logout() { await auth.logout(); await router.push('/login') }
 .app-sidebar nav a.router-link-exact-active,.app-sidebar nav a.content-active{color:#075464;background:#dff7fb;box-shadow:inset 3px 0 #07aeca}
 .app-sidebar nav a.router-link-exact-active i,.app-sidebar nav a.content-active i{background:#c4edf4}
 .app-sidebar a:focus-visible{outline:2px solid #087a91;outline-offset:-2px}
-.app-workspace{min-width:0}.app-topbar{display:flex;align-items:center;justify-content:flex-end;gap:18px;min-height:72px;padding:12px clamp(22px,4vw,58px)}.notification-button{position:relative;width:42px;height:42px;color:#163851;border:0;background:transparent;font-size:1.45rem}.notification-button span{position:absolute;right:7px;top:6px;width:9px;height:9px;border:2px solid white;border-radius:50%;background:#08b9d0}.user-menu{display:grid;grid-template-columns:42px auto auto auto;align-items:center;gap:10px}.user-menu>b{display:grid;width:42px;height:42px;place-items:center;color:white;border-radius:50%;background:linear-gradient(135deg,#3ac9ec,#20aeda)}.user-menu>span{font-weight:900}.user-menu>small{padding:3px 7px;color:#168097;border-radius:999px;background:#dff8fc}.user-menu>button{padding:7px 10px;color:#50697a;border:0;background:transparent;cursor:pointer}.app-content{padding:0 clamp(22px,4vw,58px) 42px}
-@media(max-width:760px){.app-shell{grid-template-columns:1fr}.app-sidebar{position:static;height:auto;padding:14px}.pulse-brand{justify-content:flex-start;margin:0 8px 14px;font-size:1.8rem}.app-sidebar nav{display:flex;overflow-x:auto;padding-bottom:6px}.app-sidebar nav a{grid-template-columns:30px auto;flex:none}.app-topbar{min-height:56px;padding:8px 16px}.user-menu{grid-template-columns:38px auto auto}.user-menu>b{width:38px;height:38px}.user-menu>small{display:none}.user-menu>button{grid-column:3}.app-content{padding:0 14px 28px}}
+.app-workspace{min-width:0}.app-topbar{display:flex;align-items:center;justify-content:flex-end;gap:18px;min-height:72px;padding:12px clamp(22px,4vw,58px)}.notification-button{position:relative;width:42px;height:42px;color:#163851;border:0;background:transparent;font-size:1.45rem}.notification-button span{position:absolute;right:7px;top:6px;width:9px;height:9px;border:2px solid white;border-radius:50%;background:#08b9d0}.user-menu{display:grid;min-width:0;grid-template-columns:42px minmax(0,1fr) auto auto;align-items:center;gap:10px}.user-menu>b{display:grid;width:42px;height:42px;place-items:center;color:white;border-radius:50%;background:linear-gradient(135deg,#3ac9ec,#20aeda)}.user-menu>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:900}.user-menu>small{padding:3px 7px;color:#168097;border-radius:999px;background:#dff8fc}.user-menu>button{padding:7px 10px;color:#50697a;border:0;background:transparent;cursor:pointer}.app-content{width:100%;max-width:1680px;margin-inline:auto;padding:0 clamp(20px,3vw,48px) 42px;overflow-wrap:anywhere}
+@media(max-width:900px){.app-shell{grid-template-columns:1fr}.app-sidebar{position:static;height:auto;padding:14px;border-right:0;border-bottom:1px solid #dceaf0}.pulse-brand{justify-content:flex-start;margin:0 8px 14px;font-size:1.8rem}.app-sidebar nav{display:flex;overflow-x:auto;padding-bottom:6px}.app-sidebar nav a{grid-template-columns:30px auto;flex:none}.app-topbar{min-height:56px;padding:8px 16px}.user-menu{grid-template-columns:38px minmax(0,1fr) auto}.user-menu>b{width:38px;height:38px}.user-menu>small{display:none}.user-menu>button{grid-column:3}.app-content{padding:0 16px 28px}}
+.app-content :deep(h1){
+  font-size:clamp(1.75rem,1.35rem + 1.25vw,2.8rem);
+  line-height:1.12;
+}
+.app-content :deep(fieldset){min-inline-size:0}
+.app-content :deep(:is(input,select,textarea)){max-inline-size:100%}
+.app-content :deep(:is(.table-wrap,.users-table,.product-table-wrap,.table-scroll)){
+  min-inline-size:0;
+  max-inline-size:100%;
+  overflow-x:auto;
+}
 </style>
