@@ -16,7 +16,7 @@
   <a href="#rilis-produksi">Rilis</a>
 </p>
 
-Pulse AI mengubah sinyal media sosial menjadi konten siap ditinjau dan dijadwalkan. Tim mengelola profil produk, memantau temuan AI Content Intelligence, membuat caption dan gambar, lalu menyetujui publikasi lewat Tebar.
+Pulse AI mengubah sinyal media sosial menjadi konten siap ditinjau dan dijadwalkan. Tim menyiapkan produk di Brand Profile, memantau sinyal di AI Content Intelligence, membuat caption dan gambar di Content Idea Generator, lalu memantau jadwal publikasi di Content Plan.
 
 ## Tampilan aplikasi
 
@@ -28,7 +28,7 @@ Cuplikan UI Pulse dengan akun dan konten demo.
 
 | Content Plan | AI Content Intelligence |
 | --- | --- |
-| ![Kalender publikasi dengan konten demo](docs/media/calendar.png) | ![Halaman pengaturan AI Content Intelligence](docs/media/signal-agent.png) |
+| ![Content Plan dengan konten demo](docs/media/calendar.png) | ![Halaman pengaturan AI Content Intelligence](docs/media/signal-agent.png) |
 | Lihat jadwal, platform, dan status publikasi. | Kelola sumber, produk, dan jadwal pemantauan. |
 
 ## Modul dan fitur
@@ -61,11 +61,11 @@ flowchart TD
     Valid -->|"Ya"| Dashboard["Dashboard"]
     Session -->|"Ya"| Dashboard
     Dashboard --> Role{"Role pengguna"}
-    Role -->|"Admin"| Admin["Kelola pengguna, integrasi, dan AI Content Intelligence"]
+    Role -->|"Admin"| Admin["Kelola Management User, Synchronize, dan AI Content Intelligence"]
     Role -->|"Admin"| Publish["Buat, review, dan setujui publikasi"]
     Role -->|"Anggota tim"| Member["Buka modul sesuai izin"]
     Member --> Modules["Social Media Account, Brand Profile, AI Content Intelligence, Content Idea Generator, Content Plan, atau Synchronize"]
-    Dashboard --> Profile["Kelola Management Account"]
+    Dashboard --> Profile["Management Account"]
     Dashboard --> Logout["Keluar · sesi diakhiri"]
 ```
 
@@ -86,7 +86,7 @@ flowchart TD
     Send --> Result{"Tebar mengembalikan ID post?"}
     Result -->|"Tidak"| Retry["Tampilkan error · ulangi dengan jadwal awal dan kunci idempotensi yang sama"]
     Retry --> Send
-    Result -->|"Ya"| Calendar["Simpan ID post · pantau status lewat kalender"]
+    Result -->|"Ya"| Calendar["Simpan ID post · pantau status di Content Plan"]
 ```
 
 ## Alur sistem
@@ -96,7 +96,7 @@ flowchart TD
     U["Admin / anggota tim"] --> FE["Vue SPA"]
     FE -->|"HTTP API, cookie sesi, CSRF"| BE["Express API"]
     BE --> DB[("MySQL")]
-    BE --> M["Generator manual"]
+    BE --> M["Content Idea Generator"]
     BE --> S["AI Content Intelligence"]
     S -->|"Pemicu manual atau jadwal"| A["Apify mengumpulkan sinyal"]
     A --> R["LLM menilai relevansi terhadap produk"]
@@ -106,7 +106,7 @@ flowchart TD
     D --> Q{"Keputusan admin"}
     Q -->|"Tolak"| X["Ditolak"]
     Q -->|"Setujui"| T["Tebar mengirim atau menjadwalkan"]
-    T --> K["Kalender publikasi dan status"]
+    T --> K["Content Plan"]
     BE --> K
 ```
 
@@ -119,8 +119,8 @@ flowchart LR
     Proxy -->|"/api/*"| API["Express API · Node.js"]
     subgraph Backend["Satu proses backend"]
         API --> Auth["Sesi, CSRF, role dan izin modul"]
-        API --> Content["Generator, publikasi dan kalender"]
-        API -->|"Run manual"| Executor["AI Content Intelligence executor"]
+        API --> Content["Content Idea Generator, publikasi, dan Content Plan"]
+        API -->|"Run manual"| Executor["Eksekutor AI Content Intelligence"]
         Scheduler["Scheduler"] -->|"Run terjadwal"| Executor
         Executor -->|"Rekomendasi"| Content
     end
