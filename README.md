@@ -31,6 +31,10 @@ Cuplikan UI Pulse dengan akun dan konten demo.
 | ![Content Plan dengan konten demo](docs/media/calendar.png) | ![Halaman pengaturan AI Content Intelligence](docs/media/signal-agent.png) |
 | Lihat jadwal, platform, dan status publikasi. | Kelola sumber, produk, dan jadwal pemantauan. |
 
+### Synchronize
+
+![Synchronize dengan konfigurasi aplikasi, prompt konten, dan integrasi provider demo](docs/media/synchronize.png)
+
 ## Modul dan fitur
 
 ![Peta modul Pulse AI, dari autentikasi hingga publikasi](docs/media/pulse-modules.svg)
