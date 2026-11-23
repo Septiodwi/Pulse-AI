@@ -1,6 +1,32 @@
-# Pulse AI
+<h1 align="center">Pulse AI</h1>
+
+<p align="center">
+  <img src="docs/media/pulse-banner.svg" alt="Pulse AI | Dari sinyal sosial ke kalender publikasi" width="1200">
+</p>
+
+<p align="center">
+  <a href="#tampilan-aplikasi">Tampilan aplikasi</a> ·
+  <a href="#alur-sistem">Flowchart</a> ·
+  <a href="#arsitektur">Arsitektur</a> ·
+  <a href="#erd-mysql">ERD</a> ·
+  <a href="#setup-lokal">Setup lokal</a> ·
+  <a href="#rilis-produksi">Rilis</a>
+</p>
 
 Pulse AI mengubah sinyal media sosial menjadi konten siap ditinjau dan dijadwalkan. Tim mengelola profil produk, memantau temuan Signal Agent, membuat caption dan gambar, lalu menyetujui publikasi lewat Tebar.
+
+## Tampilan aplikasi
+
+Cuplikan UI Pulse dengan akun dan konten demo.
+
+### Dashboard
+
+![Dashboard Pulse dengan ringkasan status konten dan jadwal](docs/media/dashboard.png)
+
+| Kalender Konten | Signal Agent |
+| --- | --- |
+| ![Kalender publikasi dengan konten demo](docs/media/calendar.png) | ![Halaman pengaturan Signal Agent](docs/media/signal-agent.png) |
+| Lihat jadwal, platform, dan status publikasi. | Kelola sumber, produk, dan jadwal pemantauan. |
 
 ## Alur sistem
 
@@ -21,6 +47,119 @@ flowchart TD
     Q -->|"Setujui"| T["Tebar mengirim atau menjadwalkan"]
     T --> K["Kalender publikasi dan status"]
     BE --> K
+```
+
+## Arsitektur
+
+```mermaid
+flowchart LR
+    Browser["Browser · Vue SPA"] -->|"HTTPS, origin sama"| Proxy["Reverse proxy"]
+    Proxy -->|"Aset statis, fallback SPA"| Static["frontend/dist"]
+    Proxy -->|"/api/*"| API["Express API · Node.js"]
+    subgraph Backend["Satu proses backend"]
+        API --> Auth["Sesi, CSRF, role dan izin modul"]
+        API --> Content["Generator, publikasi dan kalender"]
+        API -->|"Run manual"| Executor["Signal Agent executor"]
+        Scheduler["Scheduler"] -->|"Run terjadwal"| Executor
+        Executor -->|"Rekomendasi"| Content
+    end
+    Auth --> DB[("MySQL")]
+    Content --> DB
+    Executor --> DB
+    Executor --> Apify["Apify"]
+    Executor --> LLM["LLM OpenAI-compatible"]
+    Content --> LLM
+    Content --> Tebar["Tebar"]
+    Tebar --> Social["Platform sosial"]
+```
+
+## ERD MySQL
+
+Diagram menampilkan foreign key dan kolom utama. Akun sosial Tebar serta referensi produk, eksekusi, dan publikasi dalam `generated_content.payload` disimpan sebagai data aplikasi tanpa foreign key. `source_id` pada riwayat run dapat menjadi `NULL` saat sumber dihapus.
+
+```mermaid
+erDiagram
+    users ||--o{ sessions : memiliki
+    users ||--o{ agent_news_agents : membuat
+    agent_news_agents ||--o{ agent_news_products : menargetkan
+    products ||--o{ agent_news_products : ditargetkan
+    agent_news_agents ||--o{ agent_news_sources : memiliki
+    agent_news_agents ||--o{ agent_news_executions : menjalankan
+    agent_news_executions ||--o{ agent_news_source_runs : mencatat
+    agent_news_sources |o--o{ agent_news_source_runs : memicu
+    agent_news_agents ||--o{ agent_news_contents : menemukan
+    agent_news_executions ||--o{ agent_news_contents : menghasilkan
+    agent_news_source_runs ||--o{ agent_news_contents : mengumpulkan
+    agent_news_contents ||--o{ agent_news_content_products : terkait
+    products ||--o{ agent_news_content_products : terkait
+    users {
+        char id PK
+        varchar email UK
+        enum role
+        json access_grants
+    }
+    sessions {
+        char token_hash PK
+        char user_id FK
+        timestamp expires_at
+    }
+    products {
+        char id PK
+        varchar name
+        json linked_accounts
+    }
+    agent_news_agents {
+        char id PK
+        char created_by FK
+        varchar status
+        datetime next_run_at
+    }
+    agent_news_products {
+        char agent_id PK,FK
+        char product_id PK,FK
+    }
+    agent_news_sources {
+        char id PK
+        char agent_id FK
+        varchar platform
+        varchar actor_id
+    }
+    agent_news_executions {
+        char id PK
+        char agent_id FK
+        varchar status
+    }
+    agent_news_source_runs {
+        char id PK
+        char execution_id FK
+        char source_id FK
+        varchar status
+    }
+    agent_news_contents {
+        char id PK
+        char agent_id FK
+        char execution_id FK
+        char source_run_id FK
+    }
+    agent_news_content_products {
+        char content_id PK,FK
+        char product_id PK,FK
+    }
+    generated_content {
+        char id PK
+        varchar signal_key UK
+        enum status
+        json payload
+    }
+    app_settings {
+        tinyint id PK
+        varchar app_name
+        varchar timezone
+    }
+    schema_migrations {
+        varchar name PK
+        timestamp applied_at
+    }
 ```
 
 ## Teknologi dan struktur
