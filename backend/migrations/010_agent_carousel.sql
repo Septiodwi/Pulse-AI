@@ -1,0 +1,1 @@
+ALTER TABLE agent_news_agents ADD COLUMN image_count TINYINT UNSIGNED NOT NULL DEFAULT 1;

@@ -1,0 +1,15 @@
+ALTER TABLE app_settings
+  ADD COLUMN llm_enabled BOOLEAN NOT NULL DEFAULT TRUE,
+  ADD COLUMN agent_enabled BOOLEAN NOT NULL DEFAULT FALSE,
+  ADD COLUMN agent_interval_value SMALLINT UNSIGNED NOT NULL DEFAULT 6,
+  ADD COLUMN agent_interval_unit VARCHAR(10) NOT NULL DEFAULT 'hours',
+  ADD COLUMN agent_active_days VARCHAR(20) NOT NULL DEFAULT '1,2,3,4,5',
+  ADD COLUMN agent_start_time CHAR(5) NOT NULL DEFAULT '08:00',
+  ADD COLUMN agent_end_time CHAR(5) NOT NULL DEFAULT '22:00',
+  ADD COLUMN tebar_enabled BOOLEAN NOT NULL DEFAULT FALSE,
+  ADD COLUMN tebar_base_url VARCHAR(2048) NOT NULL DEFAULT 'https://api.tebar.app/v1',
+  ADD COLUMN tebar_profile VARCHAR(255) NULL,
+  ADD COLUMN tebar_api_key_encrypted TEXT NULL,
+  ADD COLUMN apify_enabled BOOLEAN NOT NULL DEFAULT FALSE,
+  ADD COLUMN apify_base_url VARCHAR(2048) NOT NULL DEFAULT 'https://api.apify.com/v2',
+  ADD COLUMN apify_api_token_encrypted TEXT NULL;
