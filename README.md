@@ -6,6 +6,8 @@
 
 <p align="center">
   <a href="#tampilan-aplikasi">Tampilan aplikasi</a> ·
+  <a href="#user-flow">User Flow</a> ·
+  <a href="#flowchart-publikasi">Publikasi</a> ·
   <a href="#alur-sistem">Flowchart</a> ·
   <a href="#arsitektur">Arsitektur</a> ·
   <a href="#erd-mysql">ERD</a> ·
@@ -27,6 +29,45 @@ Cuplikan UI Pulse dengan akun dan konten demo.
 | --- | --- |
 | ![Kalender publikasi dengan konten demo](docs/media/calendar.png) | ![Halaman pengaturan Signal Agent](docs/media/signal-agent.png) |
 | Lihat jadwal, platform, dan status publikasi. | Kelola sumber, produk, dan jadwal pemantauan. |
+
+## User Flow
+
+```mermaid
+flowchart TD
+    Open["Buka Pulse"] --> Session{"Sesi masih aktif?"}
+    Session -->|"Tidak"| Login["Masuk dengan email dan password"]
+    Login --> Valid{"Login berhasil?"}
+    Valid -->|"Tidak · tampilkan pesan"| Login
+    Valid -->|"Ya"| Dashboard["Dashboard"]
+    Session -->|"Ya"| Dashboard
+    Dashboard --> Role{"Role pengguna"}
+    Role -->|"Admin"| Admin["Kelola pengguna, integrasi, dan Signal Agent"]
+    Role -->|"Admin"| Publish["Buat, review, dan setujui publikasi"]
+    Role -->|"Anggota tim"| Member["Buka modul sesuai izin"]
+    Member --> Modules["Akun, produk, Signal Agent, konten, kalender, atau settings"]
+    Dashboard --> Profile["Kelola profil"]
+    Dashboard --> Logout["Keluar · sesi diakhiri"]
+```
+
+## Flowchart Publikasi
+
+```mermaid
+flowchart TD
+    Start{"Sumber konten"} -->|"Manual"| Manual["Admin pilih produk dan buat caption serta gambar"]
+    Start -->|"Signal Agent"| Signal["Konten dari sinyal yang relevan"]
+    Manual --> Draft["Simpan draft"]
+    Draft --> Review["Ajukan untuk review"]
+    Signal --> Review
+    Review --> Decision{"Keputusan admin"}
+    Decision -->|"Tolak"| Rejected["Ditolak"]
+    Decision -->|"Setujui"| Timing{"Waktu publikasi"}
+    Timing -->|"Sekarang"| Send["Kirim ke Tebar"]
+    Timing -->|"Jadwalkan"| Send
+    Send --> Result{"Tebar mengembalikan ID post?"}
+    Result -->|"Tidak"| Retry["Tampilkan error · ulangi dengan jadwal awal dan kunci idempotensi yang sama"]
+    Retry --> Send
+    Result -->|"Ya"| Calendar["Simpan ID post · pantau status lewat kalender"]
+```
 
 ## Alur sistem
 
